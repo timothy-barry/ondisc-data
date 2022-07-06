@@ -41,6 +41,8 @@ cmds <- paste0("mv ", mtx_dir, paste0("filtered_gene_bc_matrices/hg19/", c("barc
 for (cmd in cmds) system(cmd)
 cmds <- paste0("rm -rf ", mtx_dir, c("filtered_gene_bc_matrices", "mat.tar.gz"))
 for (cmd in cmds) system(cmd)
+cmd <- paste0("mv ", mtx_dir, "genes.tsv ", mtx_dir, "features.tsv")
+system(cmd)
 
 # 4. create R matrices and ODMs using the processed Gasperini data
 source(paste0(ondiscdata_code, "create_r_matrices_and_odms.R"))
