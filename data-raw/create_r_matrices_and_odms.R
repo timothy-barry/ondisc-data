@@ -33,7 +33,9 @@ save_as_matrix_and_odm <- function(odm, modality) {
                                                 features_df = feature_df,
                                                 odm_fp = paste0(ondiscdata_dir, "odm/", modality, "/matrix.odm"),
                                                 metadata_fp = paste0(ondiscdata_dir, "odm/", modality, "/metadata.rds"))
-  odm_new <- odm_new |> ondisc::mutate_feature_covariates(ondisc::get_feature_covariates(odm))
+  odm_new <- odm_new |>
+    ondisc::mutate_feature_covariates(ondisc::get_feature_covariates(odm)) |>
+    ondisc::mutate_cell_covariates(ondisc::get_cell_covariates(odm))
   ondisc::save_odm(odm = odm_new, metadata_fp = paste0(ondiscdata_dir, "odm/", modality, "/metadata.rds"))
 }
 
